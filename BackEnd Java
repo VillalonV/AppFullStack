@@ -1,0 +1,34 @@
+@SpringBootApplication
+public class BarberShopApp {
+    public static void main(String[] args) {
+        SpringApplication.run(BarberShopApp.class, args);
+    }
+}
+
+@Entity
+public class Agendamento {
+    @Id @GeneratedValue
+    private Long id;
+    private String cliente;
+    private LocalDateTime data;
+    private String servico;
+    // getters/setters
+}
+
+@RestController
+@RequestMapping("/api")
+public class AgendamentoController {
+    
+    @Autowired
+    private AgendamentoRepository repo;
+
+    @GetMapping("/agendamentos")
+    public List<Agendamento> listarTodos() {
+        return repo.findAll();
+    }
+
+    @PostMapping("/agendamentos")
+    public Agendamento criar(@RequestBody Agendamento agendamento) {
+        return repo.save(agendamento);
+    }
+}
