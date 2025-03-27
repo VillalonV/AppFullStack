@@ -1,0 +1,17 @@
+<div>
+  <h2>Agendamentos</h2>
+  
+  <div *ngFor="let ag of agendamentos$ | async">
+    {{ ag.cliente }} - {{ ag.data | date }} - {{ ag.servico }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="novoAgendamento.cliente" placeholder="Nome">
+    <input type="datetime-local" [(ngModel)]="novoAgendamento.data">
+    <select [(ngModel)]="novoAgendamento.servico">
+      <option>Corte</option>
+      <option>Barba</option>
+    </select>
+    <button type="submit">Agendar</button>
+  </form>
+</div>
