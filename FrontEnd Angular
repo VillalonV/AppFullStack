@@ -1,0 +1,16 @@
+@Injectable({
+  providedIn: 'root'
+})
+export class AgendamentoService {
+  private apiUrl = 'http://localhost:8080/api/agendamentos';
+
+  constructor(private http: HttpClient) { }
+
+  listar(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  agendar(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+}
